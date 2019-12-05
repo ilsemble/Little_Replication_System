@@ -28,12 +28,12 @@ def form_request(action_index):
 
 
 if __name__ == '__main__':
-    action = int(input("Enter:"
+    action = int(input("Enter: "
                        "%d to add string, "
-                       "%d to delete,"
-                       "%d to change string,"
-                       "%d to get list of strings"
-                       "%d to get the string"
+                       "%d to delete, "
+                       "%d to change string, "
+                       "%d to get list of strings, "
+                       "%d to get the string:  "
                        % (Action.ADD, Action.DELETE, Action.CHANGE, Action.GET_LIST, Action.GET_STRING)))
     data = form_request(action)
 
