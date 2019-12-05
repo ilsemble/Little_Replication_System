@@ -16,18 +16,22 @@ def answer_on_get_string(data):
 
 def notify_all_passive(changed_number):
     for node in list_ip:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # ip = input("IP: ")
-        # port = int(input ("port: "))
-        ip = node
-        port = 9999
-        s.connect((ip, port))
-        data_to_passive = {}
-        data_to_passive.update({Field.SENDER: Sender.ACTIVE})
-        data_to_passive.update({Field.CHANGED_NUMBER: changed_number})
-        print('Send to passive (%s): %s' % (ip, json.dumps(data_to_passive)))
-        s.send(json.dumps(data_to_passive).encode('ascii'))
-        s.close()
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            # ip = input("IP: ")
+            # port = int(input ("port: "))
+            ip = node
+            port = 9999
+            s.connect((ip, port))
+            data_to_passive = {}
+            data_to_passive.update({Field.SENDER: Sender.ACTIVE})
+            data_to_passive.update({Field.CHANGED_NUMBER: changed_number})
+            print('Send to passive (%s): %s' % (ip, json.dumps(data_to_passive)))
+            s.send(json.dumps(data_to_passive).encode('ascii'))
+            s.close()
+        except socket.error as exc:
+            print("Passive server doesn't want to talk with me anymore: %s" % exc)
+            list_ip.remove(node)
 
 
 class ClientThread(threading.Thread):

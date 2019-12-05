@@ -108,4 +108,3 @@ if __name__ == '__main__':
         channel, details = server.accept()
         ClientThread(channel, details).start()
 
-    # exit(0)

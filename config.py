@@ -1,6 +1,3 @@
-from enum import Enum
-
-
 class Ip:
     ip_active = '127.0.0.1'
     port_active = 8888
